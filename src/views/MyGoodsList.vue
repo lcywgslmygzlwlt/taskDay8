@@ -40,7 +40,11 @@
           </span>
         </td>
         <td>
-          <button class="btn btn-danger btn-sm" @click="btnDle(scope.row.id)">
+          <button
+            class="btn btn-danger btn-sm"
+            @click="btnDle(scope.row.id)"
+            v-gfocus="quanx"
+          >
             删除
           </button>
         </td>
@@ -54,6 +58,7 @@ import MyTable from "../components/MyTable.vue";
 export default {
   data() {
     return {
+      quanx: "quanx",
       list: [],
     };
   },

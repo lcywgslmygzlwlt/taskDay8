@@ -6,6 +6,14 @@ Vue.config.productionTip = false
 import axios from 'axios';
 axios.defaults.baseURL = 'https://www.escook.cn';
 Vue.prototype.$axios = axios;
+Vue.directive('gfocus', {
+  inserted(el, a) {
+    console.log(el)
+    console.log(a)
+    a.expression == "quanx" ? el.style.display = "none" : el.style.display = "block";
+  }
+})
+
 
 Vue.directive("focus", {
   inserted(el) {
