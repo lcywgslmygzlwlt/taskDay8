@@ -1,16 +1,45 @@
 <template>
   <div class="my-tab-bar">
-    <div class="tab-item">
+    <div
+      class="tab-item"
+      :class="{ current: item.componentName == currentIndex }"
+      v-for="item in list"
+      :key="item.componentName"
+      @click="clickFn(item.componentName)"
+    >
       <!-- 图标 -->
-      <span class="iconfont"></span>
+      <span class="iconfont" :class="item.iconText"></span>
       <!-- 文字 -->
-      <span></span>
+      <span>{{ item.text }}</span>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      currentIndex: 'MyGoodsList',
+    };
+  },
+  props: {
+    list: {
+      type: Array,
+      validator(val) {
+        if (val.length >= 2 && val.length <= 5) {
+          return true;
+        }
+        return false;
+      },
+    },
+  },
+  methods: {
+    clickFn(val) {
+      this.currentIndex = val;
+      this.$emit('changeTab', val);
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
